@@ -4,13 +4,16 @@ import json
 import logging
 import os
 import warnings
+from pathlib import Path
 
 from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
 
-from .services import ResearchError, run_research_tool
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+load_dotenv(PROJECT_ROOT / ".env", override=True)
+load_dotenv(override=True)
 
-load_dotenv()
+from .services import ResearchError, run_research_tool
 
 warnings.filterwarnings(
     "ignore",
